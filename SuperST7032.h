@@ -4,7 +4,7 @@
  *  Code by Gavin Tryzbiak
  *  
  *  Arduino library built to communicate with any LCD using the ST7032 LCD controller (such as AQM0802A-RN-GBW, ERC1602FYG-4, and more.)
- *  Provides base functionality and added features not typically found in most LCD libraries.
+ *  Includes standard LCD functionality in addition to extra features not typically found in most LCD libraries.
  *  
  */
 
@@ -22,13 +22,13 @@ class SuperST7032 : public Print
     SuperST7032(uint8_t addressInput); // Specific address //............. Creates an instance of the class with a specified I2C address
 
     // Methods inherited from Print class
-    virtual size_t write(uint8_t c); //............................... Writes a character. You should usually use "print()", unless writing a custome character
+    virtual size_t write(uint8_t c); //............................... Writes a single byte to the LCD. Required for printing custom characters
 
     // Members
     void begin(); //.................................................. Initializes the LCD
     void clear(); //.................................................. Clears the LCD
-    void scan(uint16_t stepTime, uint16_t stopTime, bool rollBack); // Scrolls through all the text to see all of the display registers
-    void scan(); //................................................... ^ Same as above
+    void scan(uint16_t stepTime, uint16_t stopTime, bool rollBack); // Scans through the display memory. `stepTime` is the number of milliseconds it stays put before moving again. `stopTime` is how long it stays at the left and right edge. If `rollBack` is true, it will scan back to the start when finished.
+    void scan(); //................................................... ^ Same as above, but only runs `scan(250, 750, true)`
     void home(); //................................................... Sets cursor to the top left display register
     void setCursor(uint8_t x, uint8_t y); //.......................... Sets cursor to a specified coordinate
     void cursor(bool x); //........................................... Turns cursor on or off
@@ -49,12 +49,12 @@ class SuperST7032 : public Print
     void noAutoscroll(); //........................................... ^ Same as above
     void leftToRight(); //............................................ Sets the print/write direction from left to right (default)
     void rightToLeft(); //............................................ Sets the print/write direction from right to left
-    void createChar(uint8_t location, uint8_t charmap[]); //.......... Creates and saves a custom 5x8 character at the "location". Use "write((byte)[location]);" to print. MUST use home() or setCursor() afterwards
+    void createChar(uint8_t location, uint8_t charMap[]); //.......... Creates and saves a custom 5x8 character at the "location" 0-7. Use "write([location]);" to print. Sets cursor to 0, 0 afterwards
     void contrast(uint8_t x); //...................................... Sets contrast to a specified value from 0 to 63
-    bool doubleLine(bool x); //....................................... Sets LCD to use double-line mode (default) (large font MUST be off) (returns true if successful)
+    bool doubleLine(bool x); //....................................... Sets LCD to use double-line or single-line mode (default) (large font MUST be off to use double-line) (returns true if successful)
     bool doubleLine(); //............................................. ^ Same as above
     bool singleLine(); //............................................. ^ Same as above
-    bool largeFont(bool x); //........................................ Sets LCD to use double-height font (double line MUST be off) (returns true if successful)
+    bool largeFont(bool x); //........................................ Sets LCD to use double-height or single-height (default) font (double-line MUST be off to use double-height font) (returns true if successful)
     bool largeFont(); //.............................................. ^ Same as above
     bool normalFont(); //............................................. (default) ^ Same as above
 

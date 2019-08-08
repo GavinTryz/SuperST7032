@@ -4,7 +4,7 @@
  *  Code by Gavin Tryzbiak
  *  
  *  Arduino library built to communicate with any LCD using the ST7032 LCD controller (such as AQM0802A-RN-GBW, ERC1602FYG-4, and more.)
- *  Provides base functionality and added features not typically found in most LCD libraries.
+ *  Includes standard LCD functionality in addition to extra features not typically found in most LCD libraries.
  *  
  */
 
@@ -201,7 +201,7 @@ void SuperST7032::createChar(uint8_t charAddress, uint8_t charMap[])
   command(0b01000000 | (charAddress << 3));
   for (byte i = 0; i < 8; i++)
     write(charMap[i]);
-  home();
+  setCursor(0, 0);
 }
 
 void SuperST7032::contrast(uint8_t x)
