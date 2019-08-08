@@ -10,7 +10,7 @@ Code by Gavin Tryzbiak
 
 `clear()` - Clears the LCD
 
-`print(char c)`, `print(String str)`, and more - Prints data to the LCD. Inherited from the print Class. Supports things such as printing in BIN/HEX, character arrays, and other features from the Print class
+`print(char c)`, `print(String str)`, and more - Prints data to the LCD. Inherited from the Print class. Supports things such as printing in BIN/HEX, character arrays, and other features from the Print class
 
 `write(byte x)` - Writes a single byte to the LCD. Required for printing custom characters
 
