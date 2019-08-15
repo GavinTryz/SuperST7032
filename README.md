@@ -3,6 +3,9 @@ Arduino library built to communicate with any LCD using the ST7032 LCD controlle
 
 Code by Gavin Tryzbiak
 
+## Installation
+Download the library and save it anywhere on your computer. In your Arduino IDE, go to "Sketch" at the top, "Include Libraries" and click "Add .ZIP Library. Select the zip file you just downloaded. Use `#include <SuperST7032.h>` in your sketch.
+
 ## Methods
 `SuperST7032` and `SuperST7032(uint8_t addressInput)` - Constructors. Either specify a particular I2C address, or have it default to 0x3E
 
