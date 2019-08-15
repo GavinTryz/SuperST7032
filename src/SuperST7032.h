@@ -2,6 +2,7 @@
  * 
  *  SuperST7032 - v1.0
  *  Code by Gavin Tryzbiak
+ *  https://github.com/GavinTryz
  *  
  *  Arduino library built to communicate with any LCD using the ST7032 LCD controller (such as AQM0802A-RN-GBW, ERC1602FYG-4, and more.)
  *  Includes standard LCD functionality in addition to extra features not typically found in most LCD libraries.
